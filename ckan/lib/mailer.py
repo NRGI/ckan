@@ -22,8 +22,7 @@ class MailerException(Exception):
     pass
 
 def add_msg_niceties(recipient_name, body, sender_name, sender_url):
-    return _(u"Dear %s,") % recipient_name \
-           + u"\r\n\r\n%s\r\n\r\n" % body \
+    return u"%s\r\n\r\n" % body \
            + u"--\r\n%s (%s)" % (sender_name, sender_url)
 
 def _mail_recipient(recipient_name, recipient_email,
@@ -117,17 +116,23 @@ def get_reset_link_body(user):
 
 def get_invite_body(user):
     invite_message = _(
-    "You have been invited to {site_title}. A user has already been created"
-    "to you with the username {user_name}. You can change it later.\n"
+    "You have been invited to {site_title}. A user account has already "
+    "been created for you with the username {user_name}.\n"
     "\n"
     "To accept this invite, please reset your password at:\n"
     "\n"
     "   {reset_link}\n"
+    "\n"
+    "After resetting your password, you can log in at {site_url} "
+    "with the username {user_name}. You can complete your personal "
+    "information, or change the username, on the Settings "
+    "page after logging in.\n"
     )
 
     d = {
         'reset_link': get_reset_link(user),
         'site_title': g.site_title,
+        'site_url': g.site_url,
         'user_name': user.name,
         }
     return invite_message.format(**d)
