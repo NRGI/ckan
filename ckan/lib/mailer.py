@@ -127,6 +127,11 @@ def get_invite_body(user):
     "with the username {user_name}. You can complete your personal "
     "information, or change the username, on the Settings "
     "page after logging in.\n"
+    "\n"
+    "To learn more about the features of {site_title}, please refer to "
+    "the CKAN User Guide:\n"
+    "\n"
+    "   http://docs.ckan.org/en/latest/user-guide.html\n"
     )
 
     d = {
